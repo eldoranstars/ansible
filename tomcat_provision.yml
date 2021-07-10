@@ -56,3 +56,16 @@
                 name: tomcat
                 enabled: yes
                 state: started
+
+- name: Tomcat three Checks
+  hosts: all
+
+  tasks:
+  - name: Check if Tomcat Process Running
+    shell: systemctl status tomcat
+
+  - name: Check if Tomcat Responds 200
+    shell: curl -sL -w "%{http_code}" localhost:8080 | grep 200
+
+  - name: Check if It's really Tomcat
+    shell: curl -s localhost:8080 | grep 'Apache Tomcat'
