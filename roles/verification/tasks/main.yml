@@ -1,0 +1,13 @@
+---
+        - name: Check if Tomcat Process Running
+          service:
+                name: tomcat
+                state: started
+
+        - name: Check if Nginx Process Running
+          service:
+                name: nginx
+                state: started
+
+        - name: Check if Java is Installed
+          shell: java -version | grep version | awk '{print $3}'
