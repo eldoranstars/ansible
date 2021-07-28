@@ -1,5 +1,5 @@
 [centos]
-tomcat_192.168.1.67 ansible_host=192.168.1.67
+tomcat_192.168.1.44 ansible_host=192.168.1.44
 
 [centos:vars]
 ansible_user=vagrant

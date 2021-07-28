@@ -1,0 +1,24 @@
+---
+- name: Start VM
+  hosts: localhost
+
+  tasks:
+  - name: Testing our new module 
+    bash_vagrant:
+      path: Vagrantfile
+      state: status
+    register: result
+
+  - debug: var=result
+       
+
+#  - name: Update Inventory with newly created host
+#    add_host:
+#      name: playground
+#      hostname: "{{ vm.Host }}"
+#      ansible_host: "{{ vm.HostName }}"
+#      ansible_port: "{{ vm.Port }}"
+#      ansible_connection: "paramiko"
+#      ansible_user: "{{ vm.User }}"
+#      ansible_ssh_private_key_file: "{{ vm.IdentityFile }}"
+#      external_ip: "{{ vm.ip_adresses[1] }}"  
