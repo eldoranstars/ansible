@@ -1,0 +1,25 @@
+---
+- hosts: all
+  tasks:
+        - name: Show loop result
+          debug:
+                msg: " {{ user }} "
+          vars:
+                user: "{{ hostvars[item].ansible_user }}"
+          with_inventory_hostnames: centos
+
+        - name: Loop for check if process are running
+          service:
+                name: "{{ service }}"
+                state: started
+          loop:
+                        - nginx
+                        - tomcat
+          loop_control: 
+                loop_var: service
+
+        - name: Show some facts
+          debug:
+                msg: "{{ ansible_distribution }}  {{ ansible_distribution_version }}"
+
+        - debug: msg="{{ lookup('env','HOME') }} is an environment variable"

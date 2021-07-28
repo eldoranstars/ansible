@@ -1,0 +1,31 @@
+---
+- hosts: all
+  become: yes
+
+  vars:
+        # https://www.mongodb.org/dl/linux/x86_64
+        # http://downloads.mongodb.org/linux/mongodb-linux-x86_64-rhel70-v3.2-latest.tgz
+        mongo_src:
+        - mongodb-linux-x86_64-rhel62-3.2.2.tgz
+        - mongodb-linux-x86_64-rhel62-3.6.2.tgz
+        - mongodb-linux-x86_64-rhel62-3.7.2.tgz
+        - mongodb-linux-x86_64-rhel70-3.2.2.tgz
+        - mongodb-linux-x86_64-rhel70-3.6.2.tgz
+        - mongodb-linux-x86_64-rhel70-3.7.2.tgz
+        - mongodb-linux-x86_64-ubuntu1604-3.2.20.tgz
+        - mongodb-linux-x86_64-ubuntu1604-3.6.20.tgz
+        - mongodb-linux-x86_64-ubuntu1604-3.7.2.tgz
+        - mongodb-linux-x86_64-debian81-3.2.20.tgz
+        - mongodb-linux-x86_64-debian81-3.6.20.tgz
+        - mongodb-linux-x86_64-debian81-3.7.2.tgz       
+
+        mongodb_version: "3.7"
+        os_family: "{{ ansible_os_family }}"
+        os_name: "{{ ansible_distribution }}"
+        os_release_number: "{{ ansible_distribution_major_version }}" 
+        mongo_url_base: http://downloads.mongodb.org/linux
+        mongo_url: "{{ mongo_url_base }}/{{ mongo_src | get_mongo_src(os_family, os_release_number, mongodb_version) }}"
+
+  tasks:
+        - debug:
+                msg: "{{ mongo_url }}"
