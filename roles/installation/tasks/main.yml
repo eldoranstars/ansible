@@ -14,6 +14,11 @@
           debug:
                 var: java_result.stdout_lines
 
+        - name: Install Epel-release
+          yum:
+                name: epel-release
+                state: present
+
         - name: Install Nginx
           yum:
                 name: nginx

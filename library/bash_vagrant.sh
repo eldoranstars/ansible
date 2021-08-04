@@ -18,10 +18,16 @@ then printf '{"failed": true, "msg": "%s doesnt exists"}' "$path"
 exit 1
 fi
 
-function status {
+function destroy {
+if ! [ "$(vagrant status | awk '/virtualbox/{print $2}')" = not ]
+then
 changed="true"
 vagrant destroy -f
-output=$(vagrant status | awk '/virtualbox/{print $2, $3}')
+output="VM has been destroyed"
+else
+changed="false"
+output="VM is already destroyed"
+fi
 }
 
 function status {
@@ -41,7 +47,6 @@ output="VM is not running"
 fi
 }
 
-
 function start {
 if [ "$(vagrant status | awk '/virtualbox/{print $2}')" = running ]
 then
@@ -57,7 +62,7 @@ fi
 os_name=$(cat "$path" | awk '/vm.box/{print $3}')
 os_memory=$(cat "$path" | awk '/memory/{print $3}')
 ssh_key=$(cat "$path" | awk '/ssh/{print $3}')
-ipaddr=$(cat "$path" | awk '/network/{print $6}')
+ipaddr=$(cat "$path" | awk '/network/{print $4}')
 username=$(cat "$path" | awk '/define/{print $2}')
 
 case $state in
