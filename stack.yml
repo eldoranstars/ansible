@@ -6,25 +6,22 @@
   - name: Testing our new module 
     bash_vagrant:
       path: Vagrantfile
-      state: status
-    register: result
+      state: start
+    register: vm
 
-  - debug: var=result
+  - debug: var=vm
        
 
-#  - name: Update Inventory with newly created host
-#    add_host:
-#      name: playground
-#      hostname: "{{ vm.Host }}"
-#      ansible_host: "{{ vm.HostName }}"
-#      ansible_port: "{{ vm.Port }}"
-#      ansible_connection: "paramiko"
-#      ansible_user: "{{ vm.User }}"
-#      ansible_ssh_private_key_file: "{{ vm.IdentityFile }}"
-#      external_ip: "{{ vm.ip_adresses[1] }}" 
+  - name: Update Inventory with newly created host
+    add_host:
+      name: vagrant
+      ansible_host: "{{ vm.ip_address }}"
+      ansible_connection: "ssh"
+      ansible_user: "{{ vm.username }}"
+      ansible_ssh_private_key_file: "{{ vm.ssh_key }}"
 
 - name: Provision Playground VM
-  hosts: centos 
+  hosts: vagrant 
   become: yes
   roles:
         - installation

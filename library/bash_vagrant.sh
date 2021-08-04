@@ -61,7 +61,7 @@ fi
 
 os_name=$(cat "$path" | awk '/vm.box/{print $3}')
 os_memory=$(cat "$path" | awk '/memory/{print $3}')
-ssh_key=$(cat "$path" | awk '/ssh/{print $3}')
+ssh_key=/root/.vagrant.d/insecure_private_key
 ipaddr=$(cat "$path" | awk '/network/{print $4}')
 username=$(cat "$path" | awk '/define/{print $2}')
 
