@@ -52,10 +52,16 @@ if [ "$(vagrant status | awk '/virtualbox/{print $2}')" = running ]
 then
 changed="false"
 output="VM is running"
-else 
+else
 changed="true"
 vagrant up
+if ! [ "$(echo $?)" = 0 ]
+then
+echo '{"failed": true, "msg": "Vagrant fail to run"}'
+exit 1
+else
 output=$(vagrant status | awk '/virtualbox/{print $2}')
+fi
 fi
 }
 
