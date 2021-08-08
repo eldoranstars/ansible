@@ -1,0 +1,4 @@
+- hosts: vagrant
+
+  tasks:
+  - debug: var=inventory_hostname

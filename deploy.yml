@@ -25,5 +25,4 @@
   hosts: vagrant 
   become: yes
   roles:
-        - installation
-        - verification
+        - deploy
