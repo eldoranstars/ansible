@@ -1,6 +1,6 @@
-## Develop custom filter to select an URL to download MongoDB depends on OS name and Software version from https://www.mongodb.org/dl/linux/
-## Develop custom module to manage VirtualBox:
-<!-- Arguments: 
+Develop custom filter to select an URL to download MongoDB depends on OS name and Software version from https://www.mongodb.org/dl/linux/
+Develop custom module to manage VirtualBox:
+Arguments: 
 - path to Vagrantfile
 - state: started, stopped, destroyed
 Return values:
@@ -12,4 +12,4 @@ Return values:
 - RAM size
 Errors:
 - file doesn’t exists
-- failed on creation -->
+- failed on creation
