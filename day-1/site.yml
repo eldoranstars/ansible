@@ -1,0 +1,6 @@
+---
+- hosts: centos
+  become: yes
+  roles:
+        - installation
+        - verification
