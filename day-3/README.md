@@ -1,29 +1,7 @@
 Develop custom filter to select an URL to download MongoDB depends on OS name and Software version from https://www.mongodb.org/dl/linux/
 
-Develop custom module to manage VirtualBox:
+Write a playbook (name: mongodb.yml) to prove that this module works.
 
-Arguments: 
+Develop custom module to manage VirtualBox.
 
-- path to Vagrantfile
-
-- state: started, stopped, destroyed
-
-Return values:
-
-- state: running, stopped, not created
-
-- ip address, port
-
-- path to SSH key file
-
-- username to connect to VM
-
-- os_name
-
-- RAM size
-
-Errors:
-
-- file doesn’t exists
-
-- failed on creation
+Create a playbook (name: stack.yml) to provision Tomcat stack (Nginx + Tomcat) on VirtualBox VM.

@@ -1,0 +1,11 @@
+---
+- name: Testing our new module for deploy
+  bash_deploy:
+    war: /root/cm/ansible/day-4/hello-war/target/mnt-lab.war
+    username: admin
+    password: admin
+    url: 192.168.56.23:8080/mnt-lab/
+  register: status
+
+- name: Show status tomcat
+  debug: var=status
